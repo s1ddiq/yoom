@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+
+{/* maybe need to add call inside of the imports.*/}
 import {
-  Call,
   CallControls,
   CallingState,
   CallParticipantsList,
@@ -14,7 +15,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";

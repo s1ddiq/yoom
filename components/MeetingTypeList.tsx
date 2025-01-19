@@ -15,7 +15,7 @@ import { Input } from './ui/input';
 const initialValues = {
   dateTime: new Date(),
   description: '',
-  link: '', // Always a string
+  link: '', 
 };
 
 const MeetingTypeList = () => {
@@ -58,7 +58,6 @@ const MeetingTypeList = () => {
 
       setCallDetail(call);
       
-      // If no description, navigate directly to the meeting
       if (!values.description) {
         router.push(`/meeting/${call.id}`);
       }
@@ -69,6 +68,8 @@ const MeetingTypeList = () => {
     } catch (error) {
       console.error(error);
       toast({ title: 'We had an issue creating your meeting', description: 'Please try again!' });
+
+      console.log('ignore ESLINT here,.')
     }
   };
 
@@ -164,7 +165,6 @@ const MeetingTypeList = () => {
         buttonText="Join Meeting"
         handleClick={() => router.push(values.link)}
       >
-        // Inside JSX
 <Textarea
   placeholder="Meeting link"
   onChange={(e) => setValues({ ...values, link: e.target.value })}

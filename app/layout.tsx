@@ -3,10 +3,6 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import {
   ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
 } from '@clerk/nextjs'
 import { Toaster } from "@/components/ui/toaster"
 import "@stream-io/video-react-sdk/dist/css/styles.css";
@@ -26,7 +22,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Horizon",
   description: "Video Calling App",
-  icons: '/icons/logo.svg'
+  icons: {
+    icon: '/icons/logo.svg',
+  }
 };
 
 export default function RootLayout({
