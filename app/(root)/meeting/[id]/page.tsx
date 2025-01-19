@@ -7,7 +7,11 @@ import { useUser } from '@clerk/nextjs'
 import { StreamCall, StreamTheme } from '@stream-io/video-react-sdk';
 import React, { useState } from 'react'
 
-const Meeting = ({params: {id}}: {params: {id: string}}) => {
+type PageProps = {
+  params: { id: string };
+};
+
+const Meeting = ({ params }: PageProps) => {
 
   const {isLoaded} = useUser();
 
@@ -15,7 +19,7 @@ const Meeting = ({params: {id}}: {params: {id: string}}) => {
   const [isSetupComplete, setIsSetupComplete] = useState(false)
 
   
-  const {call, isCallLoading} = useGetCallById(id);
+  const {call, isCallLoading} = useGetCallById(params.id);
 
   if(!isLoaded || isCallLoading) return <Loader/>
   return (
