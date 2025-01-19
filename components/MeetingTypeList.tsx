@@ -15,7 +15,7 @@ import { Input } from './ui/input';
 const initialValues = {
   dateTime: new Date(),
   description: '',
-  link: '',
+  link: '', // Always a string
 };
 
 const MeetingTypeList = () => {
@@ -163,11 +163,12 @@ const MeetingTypeList = () => {
         buttonText="Join Meeting"
         handleClick={() => router.push(values.link)}
       >
-        <Textarea
-          placeholder="Meeting link"
-          onChange={(e: { target: { value: any; }; }) => setValues({ ...values, link: e.target.value })}
-          className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
-        />
+        // Inside JSX
+<Textarea
+  placeholder="Meeting link"
+  onChange={(e) => setValues({ ...values, link: e.target.value })}
+  className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
+/>
       </MeetingModal>
 
       <MeetingModal
@@ -187,7 +188,11 @@ const MeetingTypeList = () => {
         buttonText="Join Meeting"
         handleClick={() => router.push(`https://${values.link}`)}
       >
-        <Input placeholder='Meeting Link' className='border-0 bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0' onChange={(e) => setValues({...values, link:e.target.value})}/>
+        <Input
+  placeholder="Meeting Link"
+  className="border-0 bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
+  onChange={(e) => setValues({ ...values, link: e.target.value })}
+/>
       </MeetingModal>
     </section>
   );
