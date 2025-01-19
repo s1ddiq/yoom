@@ -27,7 +27,6 @@ export const tokenProvider = async () => {
 
     return token;
   } catch (error) {
-    console.error("Error generating token:", error);
-    throw new Error("Failed to generate token");
+    throw new Error(error instanceof Error ? error.message : String(error));
   } 
 };
