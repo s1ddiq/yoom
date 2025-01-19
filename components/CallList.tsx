@@ -53,7 +53,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
 
       setRecordings(recordings);
 
-      toast({title: 'Processing request...'})
+      toast({title: 'Loading...'})
     };
 
     if (type === 'recordings') {
