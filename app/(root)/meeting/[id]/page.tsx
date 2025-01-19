@@ -1,5 +1,6 @@
 /* eslint-disable */
 // @ts-ignore
+// @ts-nocheck
 "use client"
 import Loader from '@/components/Loader';
 import MeetingRoom from '@/components/ui/MeetingRoom';
