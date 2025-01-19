@@ -7,16 +7,14 @@ import { useUser } from '@clerk/nextjs'
 import { StreamCall, StreamTheme } from '@stream-io/video-react-sdk';
 import React, { useState } from 'react'
 
-
-
-export default async function Meeting({ params }: { params: Promise<{ id: string}>}) {
+const Meeting = ({params: {id}}: {params: {id: string}}) => {
 
   const {isLoaded} = useUser();
 
 
   const [isSetupComplete, setIsSetupComplete] = useState(false)
 
-  const id = (await params).id
+  
   const {call, isCallLoading} = useGetCallById(id);
 
   if(!isLoaded || isCallLoading) return <Loader/>
@@ -35,3 +33,4 @@ export default async function Meeting({ params }: { params: Promise<{ id: string
   )
 }
 
+export default Meeting
