@@ -1,25 +1,21 @@
-/* eslint-disable */
+'use client';
 
-"use client";
-
+import { useState } from 'react';
 import Loader from '@/components/Loader';
 import MeetingRoom from '@/components/ui/MeetingRoom';
 import MeetingSetup from '@/components/ui/MeetingSetup';
-import { useGetCallById } from '@/hooks/useGetCallById';
 import { useUser } from '@clerk/nextjs';
 import { StreamCall, StreamTheme } from '@stream-io/video-react-sdk';
-import React, { useState } from 'react';
 
-interface MeetingProps {
-  params: { id: string };
+interface MeetingClientProps {
+  call: any; // Replace 'any' with the appropriate type for 'call'
 }
 
-export default function Meeting({ params }: MeetingProps) {
+export default function MeetingClient({ call }: MeetingClientProps) {
   const { isLoaded } = useUser();
   const [isSetupComplete, setIsSetupComplete] = useState(false);
-  const { call, isCallLoading } = useGetCallById(params.id);
 
-  if (!isLoaded || isCallLoading) return <Loader />;
+  if (!isLoaded) return <Loader />;
 
   return (
     <main className="h-screen w-full">
