@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 "use client";
 
 import Loader from '@/components/Loader';
@@ -8,18 +6,18 @@ import MeetingSetup from '@/components/ui/MeetingSetup';
 import { useGetCallById } from '@/hooks/useGetCallById';
 import { useUser } from '@clerk/nextjs';
 import { StreamCall, StreamTheme } from '@stream-io/video-react-sdk';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-interface MeetingProps {
-  params: { id: string };
-}
-
-export default function Meeting({ params }: MeetingProps) {
+export default function Meeting({ params }: { params: { id: string } }) {
   const { isLoaded } = useUser();
   const [isSetupComplete, setIsSetupComplete] = useState(false);
+
+  // Use the custom hook to fetch call details
   const { call, isCallLoading } = useGetCallById(params.id);
 
-  if (!isLoaded || isCallLoading) return <Loader />;
+  if (!isLoaded || isCallLoading) {
+    return <Loader />;
+  }
 
   return (
     <main className="h-screen w-full">
