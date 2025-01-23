@@ -1,4 +1,4 @@
-// @ts-ignore 
+// @ts-expect-error
 "use client";
 
 import Loader from "@/components/Loader";
