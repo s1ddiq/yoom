@@ -1,8 +1,6 @@
-// @ts-expect-error
 "use client";
 
 import Loader from "@/components/Loader";
-// import MeetingTypeList from "@/components/MeetingTypeList";
 import MeetingRoom from "@/components/ui/MeetingRoom";
 import MeetingSetup from "@/components/ui/MeetingSetup";
 import { useGetCallById } from "@/hooks/useGetCallById";
