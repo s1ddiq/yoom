@@ -5,26 +5,22 @@
 import Loader from "@/components/Loader";
 import MeetingRoom from "@/components/ui/MeetingRoom";
 import MeetingSetup from "@/components/ui/MeetingSetup";
-import { useGetCallById } from "@/hooks/useGetCallById";
+import { useGetCallById } from "@/hooks/useGetCallById"; 
 import { useUser } from "@clerk/nextjs";
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
-import { useState, FC } from "react";
+import { useState, use } from "react";
 
-interface MeetingPageProps {
-  params: {
-    id: string;
-  };
-}
+type Params = { id: string };
 
-const Meeting: FC<MeetingPageProps> = ({ params }) => {
+export default function Meeting({ params }: { params: Params }) {
   const { isLoaded } = useUser();
+  const { call, isCallLoading } = useGetCallById(params.id); 
   const [isSetupComplete, setIsSetupComplete] = useState(false);
-
-  const { call, isCallLoading } = useGetCallById(params.id);
 
   if (!isLoaded || isCallLoading) {
     return <Loader />;
   }
+
   return (
     <main className="h-screen w-full">
       <StreamCall call={call}>
@@ -38,6 +34,4 @@ const Meeting: FC<MeetingPageProps> = ({ params }) => {
       </StreamCall>
     </main>
   );
-};
-
-export default Meeting;
+}
