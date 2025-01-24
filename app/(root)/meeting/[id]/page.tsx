@@ -8,7 +8,7 @@ import MeetingSetup from "@/components/ui/MeetingSetup";
 import { useGetCallById } from "@/hooks/useGetCallById"; 
 import { useUser } from "@clerk/nextjs";
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
-import { useState, use } from "react";
+import { useState } from "react";
 
 type Params = { id: string };
 
