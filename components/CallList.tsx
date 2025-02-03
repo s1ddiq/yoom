@@ -1,5 +1,5 @@
 'use client';
-// @ts-nocheck
+
 import { Call, CallRecording } from '@stream-io/video-react-sdk';
 
 import Loader from './Loader';
