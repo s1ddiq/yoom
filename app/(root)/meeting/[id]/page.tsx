@@ -1,5 +1,3 @@
-// @eslint-disable 
-
 "use client";
 
 import Loader from "@/components/Loader";
@@ -8,16 +6,24 @@ import MeetingSetup from "@/components/ui/MeetingSetup";
 import { useGetCallById } from "@/hooks/useGetCallById"; 
 import { useUser } from "@clerk/nextjs";
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-
-export default async function Meeting({params}: {params: Promise<{ id: string }>}) {
-  const id = await params;
+export default function Meeting({params}: {params: Promise<{ id: string }>}) {
+  const [id, setId] = useState<string | null>(null);
   const { isLoaded } = useUser();
-  const { call, isCallLoading } = useGetCallById(id); 
+  const { call, isCallLoading } = useGetCallById(id!);
   const [isSetupComplete, setIsSetupComplete] = useState(false);
 
-  if (!isLoaded || isCallLoading) {
+  useEffect(() => {
+    // Handling the async part of fetching params here
+    const fetchParams = async () => {
+      const { id } = await params;
+      setId(id);
+    };
+    fetchParams();
+  }, [params]);
+
+  if (!isLoaded || isCallLoading || !id) {
     return <Loader />;
   }
 
