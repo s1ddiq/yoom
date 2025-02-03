@@ -10,11 +10,11 @@ import { useUser } from "@clerk/nextjs";
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
 import { useState } from "react";
 
-type Params = { id: string };
 
-export default function Meeting({ params }: { params: Params }) {
+export default async function Meeting({params}: {params: Promise<{ id: string }>}) {
+  const id = await params;
   const { isLoaded } = useUser();
-  const { call, isCallLoading } = useGetCallById(params.id); 
+  const { call, isCallLoading } = useGetCallById(id); 
   const [isSetupComplete, setIsSetupComplete] = useState(false);
 
   if (!isLoaded || isCallLoading) {
