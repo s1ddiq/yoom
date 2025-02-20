@@ -52,7 +52,9 @@ const Home = () => {
       <MeetingTypeList />
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-8">Today's Upcoming Meetings</h2>
+        <h2 className="text-2xl font-bold mb-8">
+          Today&apos;s Upcoming Meetings
+        </h2>
         <CallList type="upcoming" />
       </div>
     </section>
