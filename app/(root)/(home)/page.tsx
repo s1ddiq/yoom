@@ -31,7 +31,6 @@ const Home = () => {
     }
   }, [upcomingCalls]);
 
-  MeetingTypeList;
   if (isLoading) return <Loader className="text-white" size={48} />;
   return (
     <section className="flex size-full flex-col gap-5 text-white">
