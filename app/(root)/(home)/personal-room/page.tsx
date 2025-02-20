@@ -8,12 +8,16 @@ import { useGetCallById } from "@/hooks/useGetCallById";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
+import { ReactNode } from "react";
+import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
+
 const Table = ({
   title,
   description,
 }: {
   title: string;
-  description: string;
+  description: ReactNode;
 }) => {
   return (
     <div className="flex flex-col items-start gap-2 xl:flex-row">
@@ -61,7 +65,14 @@ const PersonalRoom = () => {
       <div className="flex w-full flex-col gap-8 xl:max-w-[900px]">
         <Table title="Topic" description={`${user?.username}'s Meeting Room`} />
         <Table title="Meeting ID" description={meetingId!} />
-        <Table title="Invite Link" description={meetingLink} />
+        <Table
+          title="Invite Link"
+          description={
+            <p className="text-blue-1 cursor-pointer">
+              <a href={meetingLink}>{meetingLink}</a>
+            </p>
+          }
+        />
       </div>
       <div className="flex gap-5">
         <Button className="bg-blue-1" onClick={startRoom}>
@@ -77,6 +88,22 @@ const PersonalRoom = () => {
           }}
         >
           Copy Invitation
+        </Button>
+      </div>
+      <Separator
+        orientation="horizontal"
+        className="bg-dark-3 h-2 rounded-lg"
+      />
+
+      <div>
+        <Button className="bg-dark-3" onClick={startRoom}>
+          <Image
+            src="/icons/add-meeting.svg"
+            width={12}
+            height={12}
+            alt="Create room"
+          />
+          Create a new room
         </Button>
       </div>
     </section>
